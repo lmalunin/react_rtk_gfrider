@@ -22,9 +22,7 @@ const store = configureStore({
 const startingState = store.getState();
 console.log(JSON.stringify(startingState));
 
-store.dispatch({
-    type: 'song/addSong',
-    payload: 'New Song!!!'
-});
+store.dispatch(songSlice.actions.addSong('New Song!!!'));
+
 const finalState = store.getState();
 console.log(JSON.stringify(finalState));
