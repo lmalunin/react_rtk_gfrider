@@ -1,16 +1,16 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const moviesSlice = createSlice({
+const moviesSlice = createSlice( {
     name: 'movie',
     initialState: [],
     reducers: {
         addMovie( state, action ) {
-            state.push(action.payload);
+            state.push( action.payload );
         },
         removeMovie( state, action ) {
-            return state.filter(( songName ) => {
+            return state.filter( ( songName ) => {
                 return songName !== action.payload;
-            });
+            } );
 
             // const index = state.indexOf(action.payload);
             // state.splice(index, 1);
@@ -19,37 +19,37 @@ const moviesSlice = createSlice({
             return [];
         }
     }
-});
+} );
 
-const songSlice = createSlice({
+const songSlice = createSlice( {
     name: 'song',
     initialState: [],
     reducers: {
         addSong( state, action ) {
-            state.push(action.payload);
+            state.push( action.payload );
         },
         removeSong( state, action ) {
-            return state.filter(( songName ) => {
+            return state.filter( ( songName ) => {
                 return songName !== action.payload;
-            });
+            } );
 
             // const index = state.indexOf(action.payload);
             // state.splice(index, 1);
         },
     },
     extraReducers( builder ) {
-        builder.addCase('movie/reset', ( state, action ) => {
+        builder.addCase( moviesSlice.actions.reset, ( state, action ) => {
             return [];
-        })
+        } )
     }
-});
+} );
 
-const store = configureStore({
+const store = configureStore( {
     reducer: {
         songs: songSlice.reducer,
         movies: moviesSlice.reducer,
     }
-});
+} );
 
 export { store };
 export const { addSong, removeSong } = songSlice.actions;
