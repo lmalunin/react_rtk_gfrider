@@ -1,13 +1,13 @@
-import {configureStore, createSlice} from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const songSlice = createSlice({
     name: 'song',
     initialState: [],
     reducers: {
-        addSong(state, action) {
+        addSong( state, action ) {
             state.push(action.payload);
         },
-        removeSong(state, action) {
+        removeSong( state, action ) {
 
         }
     }
@@ -19,4 +19,5 @@ const store = configureStore({
     }
 });
 
-export {store};
+export { store };
+export const { addSong } = songSlice.actions;
