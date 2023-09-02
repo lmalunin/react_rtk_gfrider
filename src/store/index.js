@@ -1,4 +1,6 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore, createSlice, createAction } from "@reduxjs/toolkit";
+
+const reset = createAction( 'app/reset' );
 
 const moviesSlice = createSlice( {
     name: 'movie',
@@ -15,9 +17,11 @@ const moviesSlice = createSlice( {
             // const index = state.indexOf(action.payload);
             // state.splice(index, 1);
         },
-        reset( state, action ) {
+    },
+    extraReducers( builder ) {
+        builder.addCase( reset, ( state, action ) => {
             return [];
-        }
+        } )
     }
 } );
 
@@ -38,7 +42,7 @@ const songSlice = createSlice( {
         },
     },
     extraReducers( builder ) {
-        builder.addCase( moviesSlice.actions.reset, ( state, action ) => {
+        builder.addCase( reset, ( state, action ) => {
             return [];
         } )
     }
@@ -51,6 +55,6 @@ const store = configureStore( {
     }
 } );
 
-export { store };
+export { store, reset };
 export const { addSong, removeSong } = songSlice.actions;
-export const { addMovie, removeMovie, reset } = moviesSlice.actions;
+export const { addMovie, removeMovie } = moviesSlice.actions;
