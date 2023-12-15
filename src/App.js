@@ -11,6 +11,8 @@ export default function App() {
         dispatch(reset());
     };
 
+    console.log(process.env.REACT_APP_API_KEY)
+
     return (
         <div className="container is-fluid">
             <button onClick={() => handleResetClick()} className="button is-danger">
